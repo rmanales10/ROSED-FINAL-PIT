@@ -1,25 +1,7 @@
 <?php
 session_start();
-include 'db.php';
-$db = new Database('localhost', 'root', 'root123', 'attendance');
-
-
-
 $user = $_POST['email'];
 $pass = $_POST['password'];
-
-
-$results = $db->selectWithWhere('credentials', '*', 'id_number = "'.$user.'" AND psword = "'.$pass.'"');
-foreach ($results as $row) {
-    // Verifier: Check if the user's name is not empty
-    if (!empty($row['credentials'])) {
-        print_r($row);
-    } else {
-        echo "User with ID " . $row['credentials'] . " has no name.<br>";
-    }
-}
-
-
 if($user === '0000000000' && $pass === '1234'){
     $_SESSION['authenticated'] = true;
     $_SESSION['name'] = "Admin Login";
@@ -51,7 +33,7 @@ $cookie = [
     getcwd() . '/cookie/' . mt_rand() . rand() . '.txt',
 ];
 
-/*
+
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_HEADER, 1);
 curl_setopt($ch, CURLOPT_URL, 'https://prisms.ustp.edu.ph/auth/login');
@@ -103,6 +85,6 @@ if (strpos($response1, 'Welcome To Dashboard!')) {
     header('Location: ./');
     exit();     
 }
-*/
+
 clearCookies();
 ?>

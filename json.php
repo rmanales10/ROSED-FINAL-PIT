@@ -46,8 +46,5 @@ function table($t){
 
     return null;
 }
-$json_result = json_decode(table('credentials'),true);
-foreach($json_result as $oten){
-    echo $oten;
-}
+print_r($json_result = json_decode(table('credentials'),true));
 ?>
