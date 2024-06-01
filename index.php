@@ -27,7 +27,7 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
       <?php session_destroy();} ?>
       <?php if (isset($_SESSION['success'])) { ?>
         <div role="alert" class="alert alert-success text-center">
-          <span><?php echo ($_SESSION['success']); ?></span>
+          <span><?php echo $_SESSION['success']; ?></span>
         </div>
       <?php session_destroy();} ?>
       <img src="src/usg.jpg" class="rounded-full w-24 h-24">
