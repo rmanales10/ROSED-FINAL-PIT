@@ -1,5 +1,4 @@
 <?php
-session_start();
 class Database {
     private $host;
     private $username;
@@ -71,31 +70,9 @@ class Database {
         return "'" . $this->conn->real_escape_string($value) . "'";
     }
 }
+//$db = new Database('localhost', 'root', 'root123', 'attendance');
+//if($db->selectWithWhere('credentials','*','id_number="1234123" AND psword="password"'))
 
-
-$db = new Database('localhost', 'root', 'root123', 'attendance');
-/*
-// Perform a select query with a WHERE clause
-$results = $db->selectWithWhere('users', '*', 'age > 30');
-foreach ($results as $row) {
-    print_r($row);
-}
-*/
-if(isset($_POST['emaildb']) && isset($_POST['idnumber']) && isset($_POST['pass'])){
-$email = $_POST['emaildb'];
-$idnumbmer = $_POST['idnumber'];
-$pass = $_POST['pass'];
-$newUserData = [
-    'email' => $email,
-    'id_number' => $idnumbmer,
-    'psword' => $pass
-];
-$insertId = $db->insert('credentials', $newUserData);
-$_SESSION['success'] = 'Registered Successfully';
-header('location: ./');
-}
-
-
-$db->closeConnection();
+//$db->closeConnection();
 
 ?>

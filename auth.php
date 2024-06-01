@@ -1,13 +1,29 @@
 <?php
+include('db.php');
 session_start();
+if(isset($_POST['email']) && $_POST['password']){
 $user = $_POST['email'];
 $pass = $_POST['password'];
+
+
 if($user === '0000000000' && $pass === '1234'){
     $_SESSION['authenticated'] = true;
     $_SESSION['name'] = "Admin Login";
     header('Location: user/dashboard');
     exit();
 }
+
+
+$db = new Database('localhost', 'root', 'root123', 'attendance');
+if($db->selectWithWhere('credentials','*','id_number="'.$user.'" AND psword="'.$pass.'"')){
+    $_SESSION['authenticated'] = true;
+    $_SESSION['name'] = "Admin Login";
+    header('location: user/dashboard');
+    exit();
+}
+$db->closeConnection();
+
+
 function g($string, $start, $end) {
     $str = explode($start, $string);
     if (isset($str[1])) {
@@ -85,6 +101,8 @@ if (strpos($response1, 'Welcome To Dashboard!')) {
     header('Location: ./');
     exit();     
 }
-
-clearCookies();
+}else{}
+    session_destroy();
+    header('location: ./');
+//clearCookies();
 ?>
