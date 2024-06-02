@@ -1,3 +1,11 @@
+<?php
+include 'auth.php';
+session_start();
+if (!isset($_SESSION['authenticated'])) {
+  header("location: ../");
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 
@@ -50,7 +58,7 @@
         </a>
       </li>
       <li class="w-full">
-        <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Logout">
+        <a href="../logout" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Logout">
           <i class="bi bi-box-arrow-left text-white"></i>
           <h1 class="hidden md:block text-white">Logout</h1>
         </a>
@@ -89,7 +97,7 @@
 
       </div>
       <!------------------------------------------>
-
+      
       <!---------------- #Student Profile ---------------------->
 
       <div class="max-w-sm mx-auto bg-base-100 rounded-lg shadow-lg overflow-hidden mt-[15vh]">
@@ -101,31 +109,31 @@
         <div class="p-6">
           <div class="mb-4">
             <label class="block text-base-content font-bold mb-2">Full Name: </label>
-            <p id="fullName" class="text-base-content"></p>
+            <p id="fullName" class="text-base-content"><?php echo $_SESSION = $studentProfile['full_name']; ?></p>
           </div>
           <div class="mb-4">
             <label class="block text-base-content font-bold mb-2">Section: </label>
-            <p id="section" class="text-base-content"></p>
+            <p id="section" class="text-base-content"><?php echo $_SESSION = $studentProfile['section']; ?></p>
           </div>
           <div class="mb-4">
             <label class="block text-base-content font-bold mb-2">Gender: </label>
-            <p id="gender" class="text-base-content"></p>
+            <p id="gender" class="text-base-content"><?php echo $_SESSION = $studentProfile['gender']; ?></p>
           </div>
           <div class="mb-4">
             <label class="block text-base-content font-bold mb-2">Address:</label>
-            <p id="address" class="text-base-content"></p>
+            <p id="address" class="text-base-content"><?php echo $_SESSION = $studentProfile['address']; ?></p>
           </div>
           <div class="mb-4">
             <label class="block text-base-content font-bold mb-2">Date of Birth:</label>
-            <p id="dateOfBirth" class="text-base-content"></p>
+            <p id="dateOfBirth" class="text-base-content"><?php echo $_SESSION = $studentProfile['date_of_birth']; ?></p>
           </div>
           <div class="mb-4">
             <label class="block text-base-content font-bold mb-2">Age: </label>
-            <p id="age" class="text-base-content"></p>
+            <p id="age" class="text-base-content"><?php echo $_SESSION = $studentProfile['age']; ?></p>
           </div>
           <div class="mb-4">
             <label class="block text-base-content font-bold mb-2">Civil Status:</label>
-            <p id="civilStatus" class="text-base-content"></p>
+            <p id="civilStatus" class="text-base-content"><?php echo $_SESSION = $studentProfile['civil_status']; ?></p>
           </div>
           <button class="btn btn-primary mt-4" onclick="my_modal_1.showModal()">Edit Profile</button>
         </div>
@@ -135,7 +143,7 @@
       <dialog id="my_modal_1" class="modal">
         <div class="modal-box">
           <h3 class="font-bold text-lg">Edit Profile</h3>
-          <form id="editProfileForm" class="py-4" method="POST" action="/information">
+          <form id="editProfileForm" class="py-4" method="POST" action="../information">
             <div class="mb-4">
               <label class="block text-base-content font-bold mb-2">Full Name:</label>
               <input type="text" name="fullName" id="editFullName" class="input input-bordered w-full">

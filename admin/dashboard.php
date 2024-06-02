@@ -48,7 +48,7 @@ if (!isset($_SESSION['authenticated'])) {
           </a>
         </li>
         <li class="w-full">
-          <a  href="profile" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Student Profile">
+          <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Student Profile">
             <i class="bi bi-person-circle text-white"></i><h1 class="hidden md:block text-white">Student Profile</h1>
           </a>
         </li>
