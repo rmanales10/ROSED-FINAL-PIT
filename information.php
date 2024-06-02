@@ -1,10 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // Handle GET request
+    header('location: ./error');
 }
-
-
-
 include('db.php');
 session_start();
 #-------------------------------------------------Register-----------------------------------------------------#
@@ -19,8 +16,6 @@ if (isset($_POST['emaildb']) && isset($_POST['idnumber']) && isset($_POST['pass'
     ];
     $insertId = $db->insert('credentials', $newUserData);
     $_SESSION['success'] = 'Registered Successfully';
-    header('location: ./');
-} else {
     header('location: ./');
 }
 #-------------------------------------------------Student-Profile-----------------------------------------------------#
