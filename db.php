@@ -19,7 +19,7 @@ class Database {
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         } else {
-            echo "Connected successfully";
+            //echo "Connected successfully";
         }
     }
 
@@ -70,7 +70,7 @@ class Database {
         return "'" . $this->conn->real_escape_string($value) . "'";
     }
 }
-//$db = new Database('localhost', 'root', 'root123', 'attendance');
+$db = new Database('localhost', 'root', 'root123', 'attendance');
 //if($db->selectWithWhere('credentials','*','id_number="1234123" AND psword="password"'))
 
 //$db->closeConnection();

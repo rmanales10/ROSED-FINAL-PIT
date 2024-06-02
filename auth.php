@@ -12,9 +12,6 @@ if($user === '0000000000' && $pass === '1234'){
     header('Location: user/dashboard');
     exit();
 }
-
-
-$db = new Database('localhost', 'root', 'root123', 'attendance');
 if($db->selectWithWhere('credentials','*','id_number="'.$user.'" AND psword="'.$pass.'"')){
     $_SESSION['authenticated'] = true;
     $_SESSION['name'] = "Admin Login";
@@ -89,8 +86,8 @@ curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie[0]);
 curl_setopt($ch, CURLOPT_POSTFIELDS, '_token=' . $token . '&Username=' . $user . '&password=' . $pass . '&remember=0');
 $response1 = curl_exec($ch);
 curl_close($ch);
-
 if (strpos($response1, 'Welcome To Dashboard!')) {
+
     $_SESSION['authenticated'] = true;
     $_SESSION['name'] = strtoupper(g($response1, '<span class="username uppercase username-hide-on-mobile">', '</span>'));
     $_SESSION['profile_pic'] = g($response1,'<img alt="" class="img-circle" src="','"/>');
@@ -104,5 +101,6 @@ if (strpos($response1, 'Welcome To Dashboard!')) {
 }else{}
     session_destroy();
     header('location: ./');
-//clearCookies();
+clearCookies();
+
 ?>
