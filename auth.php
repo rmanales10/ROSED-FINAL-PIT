@@ -5,30 +5,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 include('db.php');
 session_start();
-if(isset($_POST['email']) && $_POST['password']){
-$user = $_POST['email'];
-$pass = $_POST['password'];
-$studentProfile = $db->selectWithWhere('credentials inner join student_profile using(student_id)','*','id_number = "'.$user.'"')[0];
-    $_SESSION = $studentProfile['full_name'];
-    $_SESSION = $studentProfile['section'];
-    $_SESSION = $studentProfile['gender'];
-    $_SESSION = $studentProfile['address'];
-    $_SESSION = $studentProfile['date_of_birth'];
-    $_SESSION = $studentProfile['age'];
-    $_SESSION = $studentProfile['civil_status'];
-    
+if(isset($_POST['idNumberInput']) && $_POST['PasswordInput']){
+$user = $_POST['idNumberInput'];
+$pass = $_POST['PasswordInput'];
+
+if($db->selectWithWhere('users','*','id_number="'.$user.'" AND password="'.$pass.'"')){
+$student = $db->selectWithWhere('users','*','id_number="'.$user.'" AND password="'.$pass.'"')[0];
+$Sfullname = $student['full_name'];
+$_SESSION['authenticated'] = true;
+$_SESSION['id_number'] = $user;
+$_SESSION['name'] = $Sfullname;
+header('Location: user/dashboard');
+    exit();
+}
 
 if($user === '0000000000' && $pass === '1234'){
     $_SESSION['authenticated'] = true;
-    $_SESSION['name'] = "Admin Login";
+    $_SESSION['name'] = "TEST LOGIN";
     header('Location: user/dashboard');
-    exit();
-}
-if($db->selectWithWhere('credentials','*','id_number="'.$user.'" AND psword="'.$pass.'"')){
-    $_SESSION['authenticated'] = true;
-    $_SESSION['name'] = "Admin Login";
-    
-    header('location: user/profile');
     exit();
 }
 $db->closeConnection();

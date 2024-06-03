@@ -29,17 +29,12 @@ if (!isset($_SESSION['authenticated'])) {
         </div>
         <li class="bg-gray-800 rounded-sm w-full">
           <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Homepage">
-            <i class="bi bi-house text-white"></i><h1 class="hidden md:block text-white">Homepage</h1>
+            <i class="bi bi-house text-white"></i><h1 class="hidden md:block text-white">Dashboard</h1>
           </a>
         </li>
         <li class="w-full">
-          <a href="#" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="QR code">
-            <i class="bi bi-qr-code text-white"></i><h1 class="hidden md:block text-white">QR code</h1>
-          </a>
-        </li>
-        <li class="w-full">
-          <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Attendance">
-            <i class="bi bi-file-earmark-check-fill text-white"></i><h1 class="hidden md:block text-white">Attendance</h1>
+          <a href="qrcode" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="QR code">
+            <i class="bi bi-qr-code text-white"></i><h1 class="hidden md:block text-white">QR code for attendance</h1>
           </a>
         </li>
         <li class="w-full">
@@ -50,16 +45,6 @@ if (!isset($_SESSION['authenticated'])) {
         <li class="w-full">
           <a  href="profile" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Student Profile">
             <i class="bi bi-person-circle text-white"></i><h1 class="hidden md:block text-white">Student Profile</h1>
-          </a>
-        </li>
-        <li class="w-full">
-          <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Penalty">
-            <i class="bi bi-exclamation-octagon-fill text-white"></i><h1 class="hidden md:block text-white">Penalty</h1>
-          </a>
-        </li>
-        <li class="w-full">
-          <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Enrolment Fees">
-            <i class="bi bi-cash text-white"></i><h1 class="hidden md:block text-white">Enrolment Fees</h1>
           </a>
         </li>
         <li class="w-full">

@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['authenticated'])) {
+  header("location: ../");
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
   <head>
@@ -21,13 +28,13 @@
           
         </div>
         <li class="rounded-sm w-full">
-          <a href="dashboard.html" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Homepage">
-            <i class="bi bi-house text-white"></i><h1 class="hidden md:block text-white">Homepage</h1>
+          <a href="dashboard" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Homepage">
+            <i class="bi bi-house text-white"></i><h1 class="hidden md:block text-white">Dashboard</h1>
           </a>
         </li>
         <li class="bg-gray-800 w-full">
           <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="QR code">
-            <i class="bi bi-qr-code text-white"></i><h1 class="hidden md:block text-white">QR code</h1>
+            <i class="bi bi-qr-code text-white"></i><h1 class="hidden md:block text-white">QR code for attendance</h1>
           </a>
         </li>
         <li class="w-full">
@@ -36,7 +43,7 @@
           </a>
         </li>
         <li class="w-full">
-          <a href="profile.html" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Student Profile">
+          <a href="profile" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Student Profile">
             <i class="bi bi-person-circle text-white"></i><h1 class="hidden md:block text-white">Student Profile</h1>
           </a>
         </li>
@@ -90,7 +97,14 @@
 <!---------------- #Quick Acces ---------------------->
 <h1 class="text-[2rem] text-center mt-10 font-bold text-white">QR CODE</h1>
 <div class="flex flex-col mt-10 items-center justify-center text-center gap-10">
-  <img class="outline-slate-100 outline-8 p-" src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=200x200" alt="" title="" />
+  <?php
+  include '../db.php';
+  $studentProfile = $db->selectWithWhere('users','*','id_number="'.$_SESSION['id_number'].'"')[0];
+  $Sfullname = $studentProfile['full_name'];
+  $Ssection = $studentProfile['section'];
+  $Sid_number = $studentProfile['id_number'];
+  ?>
+  <img class="outline-slate-100 outline-8 p-" src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo "$Sfullname <br> $Sid_number <br> $Ssection"?>&amp;size=200x200" alt="" title="" />
 <h1 class="text-[1rem] text-center font-bold text-white">Please Scan this to USG to Present</h1>
         <!-- #Quick Acces -->
         

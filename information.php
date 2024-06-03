@@ -5,18 +5,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 include('db.php');
 session_start();
 #-------------------------------------------------Register-----------------------------------------------------#
-if (isset($_POST['emaildb']) && isset($_POST['idnumber']) && isset($_POST['pass'])) {
-    $email = $_POST['emaildb'];
-    $idnumber = $_POST['idnumber'];
-    $pass = $_POST['pass'];
+if (isset($_POST['fullname']) && isset($_POST['idnumber']) && isset($_POST['section']) && isset($_POST['email']) && isset($_POST['password'])) {
+    $full_name = $_POST["fullname"];
+    $id_number = $_POST["idnumber"];
+    $section = $_POST["section"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
     $newUserData = [
+        'full_name' => $full_name,
+        'id_number' => $id_number,
+        'section' => $section,
         'email' => $email,
-        'id_number' => $idnumber,
-        'psword' => $pass
+        'password' => $password
     ];
-    $insertId = $db->insert('credentials', $newUserData);
-    $_SESSION['success'] = 'Registered Successfully';
-    header('location: ./');
+    $insertId = $db->insert('users', $newUserData);
+    echo $_SESSION['success'] = 'Registered Successfully';
+    header('location: ./'); 
+    exit();
 }
 #-------------------------------------------------Student-Profile-----------------------------------------------------#
 if (isset($_POST['fullName']) && isset($_POST['section']) && isset($_POST['gender']) && isset($_POST['address']) && isset($_POST['dob']) && isset($_POST['age']) && isset($_POST['civilStatus'])) {

@@ -84,14 +84,51 @@
           
         </div>
 <!------------------------------------------>
-<div role="alert" class="alert alert-info mt-10">
-  <span>Welcome, Rolan Manales</span>
-</div>
 <!---------------- #Quick Acces ---------------------->
-<h1 class="text-[2rem] text-center mt-10 font-bold text-white">QR CODE</h1>
+<h1 class="text-[2rem] text-center mt-10 font-bold text-white">QR Scanner for Attendance </h1>
 <div class="flex flex-col mt-10 items-center justify-center text-center gap-10">
-  <img class="outline-slate-100 outline-8 p-" src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=200x200" alt="" title="" />
-<h1 class="text-[1rem] text-center font-bold text-white">Please Scan this to USG to Present</h1>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<main class="flex justify-center items-center w-[30vh] lg:w-[50vh]">
+    <div id="reader" class="w-[50vh]"></div>
+    <div id="result" class="text-center text-2xl"></div>
+</main>
+<script>
+
+    const scanner = new Html5QrcodeScanner('reader', { 
+        // Scanner will be initialized in DOM inside element with id of 'reader'
+        qrbox: {
+            width: 150,
+            height: 150,
+        },  // Sets dimensions of scanning box (set relative to reader element width)
+        fps: 30, // Frames per second to attempt a scan
+    });
+
+
+    scanner.render(success, error);
+    // Starts scanner
+
+    function success(result) {
+
+        document.getElementById('result').innerHTML = `
+        <h2>Recorded Successfully!</h2><br>
+        <p>${result}</a></p>
+        `;
+        // Prints result as a link inside result element
+
+        scanner.clear();
+        // Clears scanning instance
+
+        document.getElementById('reader').remove();
+        // Removes reader element from DOM since no longer needed
+    
+    }
+
+    function error(err) {
+        console.error(err);
+        // Prints any errors to the console
+    }
+
+</script>
         <!-- #Quick Acces -->
         
                </div>

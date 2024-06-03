@@ -1,5 +1,4 @@
 <?php
-include 'auth.php';
 session_start();
 if (!isset($_SESSION['authenticated'])) {
   header("location: ../");
@@ -27,15 +26,15 @@ if (!isset($_SESSION['authenticated'])) {
 
       </div>
       <li class=" rounded-sm w-full">
-        <a href="dashboard.html" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Homepage">
+        <a href="dashboard" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Homepage">
           <i class="bi bi-house text-white"></i>
-          <h1 class="hidden md:block text-white">Homepage</h1>
+          <h1 class="hidden md:block text-white">Dashboard</h1>
         </a>
       </li>
       <li class="w-full">
-        <a href="qrcode.html" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="QR code">
+        <a href="qrcode" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="QR code">
           <i class="bi bi-qr-code text-white"></i>
-          <h1 class="hidden md:block text-white">QR code</h1>
+          <h1 class="hidden md:block text-white">QR code for attendance</h1>
         </a>
       </li>
 
@@ -97,7 +96,15 @@ if (!isset($_SESSION['authenticated'])) {
 
       </div>
       <!------------------------------------------>
-      
+      <?php
+      include '../db.php';
+      $studentProfile = $db->selectWithWhere('users','*','id_number="'.$_SESSION['id_number'].'"')[0];
+      $Sfullname = $studentProfile['full_name'];
+      $Semail = $studentProfile['email'];
+      $Ssection = $studentProfile['section'];
+      $Sid_number = $studentProfile['id_number'];
+      $Sdate_registered = $studentProfile['date_registered'];
+      ?>
       <!---------------- #Student Profile ---------------------->
 
       <div class="max-w-sm mx-auto bg-base-100 rounded-lg shadow-lg overflow-hidden mt-[15vh]">
@@ -107,89 +114,30 @@ if (!isset($_SESSION['authenticated'])) {
           <h2 class="text-2xl font-bold">Student Profile</h2>
         </div>
         <div class="p-6">
+        <div class="mb-4">
+            <label class="block text-base-content font-bold mb-2">ID Number:  </label>
+            <p id="fullName" class="text-base-content"><?php echo $Sid_number ?></p>
+          </div>
           <div class="mb-4">
             <label class="block text-base-content font-bold mb-2">Full Name: </label>
-            <p id="fullName" class="text-base-content"><?php echo $_SESSION = $studentProfile['full_name']; ?></p>
+            <p id="fullName" class="text-base-content"><?php echo $Sfullname ?></p>
           </div>
           <div class="mb-4">
             <label class="block text-base-content font-bold mb-2">Section: </label>
-            <p id="section" class="text-base-content"><?php echo $_SESSION = $studentProfile['section']; ?></p>
+            <p id="section" class="text-base-content"><?php echo $Ssection ?></p>
           </div>
           <div class="mb-4">
-            <label class="block text-base-content font-bold mb-2">Gender: </label>
-            <p id="gender" class="text-base-content"><?php echo $_SESSION = $studentProfile['gender']; ?></p>
+            <label class="block text-base-content font-bold mb-2">Email: </label>
+            <p id="fullName" class="text-base-content"><?php echo $Semail ?></p>
           </div>
           <div class="mb-4">
-            <label class="block text-base-content font-bold mb-2">Address:</label>
-            <p id="address" class="text-base-content"><?php echo $_SESSION = $studentProfile['address']; ?></p>
+            <label class="block text-base-content font-bold mb-2">Date Registered: </label>
+            <p id="fullName" class="text-base-content"><?php echo $Sdate_registered ?></p>
           </div>
           <div class="mb-4">
-            <label class="block text-base-content font-bold mb-2">Date of Birth:</label>
-            <p id="dateOfBirth" class="text-base-content"><?php echo $_SESSION = $studentProfile['date_of_birth']; ?></p>
-          </div>
-          <div class="mb-4">
-            <label class="block text-base-content font-bold mb-2">Age: </label>
-            <p id="age" class="text-base-content"><?php echo $_SESSION = $studentProfile['age']; ?></p>
-          </div>
-          <div class="mb-4">
-            <label class="block text-base-content font-bold mb-2">Civil Status:</label>
-            <p id="civilStatus" class="text-base-content"><?php echo $_SESSION = $studentProfile['civil_status']; ?></p>
-          </div>
-          <button class="btn btn-primary mt-4" onclick="my_modal_1.showModal()">Edit Profile</button>
+
         </div>
       </div>
-
-      <!-- Edit Profile Modal -->
-      <dialog id="my_modal_1" class="modal">
-        <div class="modal-box">
-          <h3 class="font-bold text-lg">Edit Profile</h3>
-          <form id="editProfileForm" class="py-4" method="POST" action="../information">
-            <div class="mb-4">
-              <label class="block text-base-content font-bold mb-2">Full Name:</label>
-              <input type="text" name="fullName" id="editFullName" class="input input-bordered w-full">
-            </div>
-            <div class="mb-4">
-              <label class="block text-base-content font-bold mb-2">Section:</label>
-              <input type="text" name="section" id="editSection" class="input input-bordered w-full">
-            </div>
-            <div class="mb-4">
-              <label class="block text-base-content font-bold mb-2">Gender:</label>
-              <select name="gender" class="select w-full max-w-xs" id="editGender">
-                <option disabled selected>Select</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-            </div>
-            <div class="mb-4">
-              <label class="block text-base-content font-bold mb-2">Address:</label>
-              <input type="text" name="address" id="editAddress" class="input input-bordered w-full">
-            </div>
-            <div class="mb-4">
-              <label class="block text-base-content font-bold mb-2">Date of Birth:</label>
-              <input type="date" name="dob" id="editDob" class="input input-bordered w-full">
-            </div>
-            <div class="mb-4">
-              <label class="block text-base-content font-bold mb-2">Age:</label>
-              <input type="number" name="age" id="editAge" class="input input-bordered w-full" readonly>
-            </div>
-            <div class="mb-4">
-              <label class="block text-base-content font-bold mb-2">Civil Status:</label>
-              <select name="civilStatus" class="select w-full max-w-xs" id="editCivil">
-                <option disabled selected>Select</option>
-                <option value="Single">Single</option>
-                <option value="Married">Married</option>
-                <option value="Divorced">Divorced</option>
-                <option value="Separated">Separated</option>
-                <option value="Civil Partnered">Civil Partnered</option>
-              </select>
-            </div>
-            <div class="modal-action">
-              <button type="submit" class="btn btn-primary">Save</button>
-              <button type="button" class="btn" onclick="document.getElementById('my_modal_1').close()">Close</button>
-            </div>
-          </form>
-        </div>
-      </dialog>
     </div>
   </div>
 </body>
