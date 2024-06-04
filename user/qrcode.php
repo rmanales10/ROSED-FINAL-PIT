@@ -92,7 +92,7 @@ if (!isset($_SESSION['authenticated'])) {
         </div>
 <!------------------------------------------>
 <div role="alert" class="alert alert-info mt-10">
-  <span>Welcome, Rolan Manales</span>
+  <span>Welcome, <?php echo $_SESSION['name'] ?></span>
 </div>
 <!---------------- #Quick Acces ---------------------->
 <h1 class="text-[2rem] text-center mt-10 font-bold text-white">QR CODE</h1>
@@ -104,7 +104,7 @@ if (!isset($_SESSION['authenticated'])) {
   $Ssection = $studentProfile['section'];
   $Sid_number = $studentProfile['id_number'];
   ?>
-  <img class="outline-slate-100 outline-8 p-" src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo "$Sfullname <br> $Sid_number <br> $Ssection"?>&amp;size=200x200" alt="" title="" />
+  <img class="outline-slate-100 outline-8 p-" src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo "Name: $Sfullname <br> Id Number: $Sid_number <br> Section: $Ssection"?>&amp;size=200x200" alt="" title="" />
 <h1 class="text-[1rem] text-center font-bold text-white">Please Scan this to USG to Present</h1>
         <!-- #Quick Acces -->
         

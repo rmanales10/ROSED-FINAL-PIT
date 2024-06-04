@@ -16,17 +16,16 @@ $_SESSION['authenticated'] = true;
 $_SESSION['id_number'] = $user;
 $_SESSION['name'] = $Sfullname;
 header('Location: user/dashboard');
-    exit();
+exit();
 }
-
-if($user === '0000000000' && $pass === '1234'){
-    $_SESSION['authenticated'] = true;
-    $_SESSION['name'] = "TEST LOGIN";
-    header('Location: user/dashboard');
-    exit();
+else{
+$_SESSION['error'] = 'Wrong Id Number or Password';
+header('Location: ./');
+exit();
 }
-$db->closeConnection();
 }
+else
+echo "error";
 /*
 function g($string, $start, $end) {
     $str = explode($start, $string);

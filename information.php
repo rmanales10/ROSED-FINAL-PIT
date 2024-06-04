@@ -45,6 +45,7 @@ if (isset($_POST['fullName']) && isset($_POST['section']) && isset($_POST['gende
     $insertId = $db->insert('student_profile', $student_profile);
     echo $_SESSION['edit'] = 'Edit Successfully';
 }
+#-------------------------------------------------Register-----------------------------------------------------#
 
 
 $db->closeConnection();

@@ -11,6 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js" defer ></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Document</title>
   </head>
   <body class="m-0 bg-zinc-900">
@@ -85,51 +86,66 @@
         </div>
 <!------------------------------------------>
 <!---------------- #Quick Acces ---------------------->
-<h1 class="text-[2rem] text-center mt-10 font-bold text-white">QR Scanner for Attendance </h1>
-<div class="flex flex-col mt-10 items-center justify-center text-center gap-10">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<main class="flex justify-center items-center w-[30vh] lg:w-[50vh]">
-    <div id="reader" class="w-[50vh]"></div>
-    <div id="result" class="text-center text-2xl"></div>
-</main>
-<script>
+<h1 class="text-[20px] text-center mt-10 font-bold text-white">Attendance QR Scanner </h1>
+    <div class="flex flex-col mt-5 items-center justify-center text-center">
+    <div id="result" class="text-center mb-5"></div>
+        <main class="flex justify-center items-center w-[30vh] lg:w-[50vh]">
+            <div id="reader" class="w-[50vh]"></div>
+        </main>
+        
+    </div>
 
-    const scanner = new Html5QrcodeScanner('reader', { 
-        // Scanner will be initialized in DOM inside element with id of 'reader'
-        qrbox: {
-            width: 150,
-            height: 150,
-        },  // Sets dimensions of scanning box (set relative to reader element width)
-        fps: 30, // Frames per second to attempt a scan
-    });
+    <script>
+        const scanner = new Html5QrcodeScanner('reader', {
+    qrbox: {
+        width: 150,
+        height: 150,
+    },
+    fps: 30,
+});
 
+let lastResult = ''; // To store the last scanned result
 
-    scanner.render(success, error);
-    // Starts scanner
+scanner.render(success, error);
 
-    function success(result) {
-
+function success(result) {
+    if (result === lastResult) {
         document.getElementById('result').innerHTML = `
-        <h2>Recorded Successfully!</h2><br>
-        <p>${result}</a></p>
+            <div class="alert alert-info">
+                <span>Already Recorded!<br>${result}</span>
+            </div>
         `;
-        // Prints result as a link inside result element
-
-        scanner.clear();
-        // Clears scanning instance
-
-        document.getElementById('reader').remove();
-        // Removes reader element from DOM since no longer needed
-    
+        return;
     }
 
-    function error(err) {
-        console.error(err);
-        // Prints any errors to the console
-    }
+    lastResult = result; // Update last scanned result
 
-</script>
-        <!-- #Quick Acces -->
+    document.getElementById('result').innerHTML = `
+        <div class="alert alert-success">
+            <span>Recorded Successfully!<br>${result}</span>
+        </div>
+    `;
+
+    // Send scanned data to attend.php via AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'attend.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText); // Response from PHP script
+        }
+    };
+    xhr.send('data=' + encodeURIComponent(result));
+
+    //scanner.clear();
+    //document.getElementById('reader').remove();
+}
+
+function error(err) {
+    console.error(err);
+}
+
+    </script>
         
                </div>
             
