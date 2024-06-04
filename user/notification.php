@@ -37,21 +37,13 @@ if (!isset($_SESSION['authenticated'])) {
           <h1 class="hidden md:block text-white">QR code for attendance</h1>
         </a>
       </li>
-
       <li class="w-full">
-        <a href="events.html" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Upcoming Events">
-          <i class="bi bi-calendar-check text-white"></i>
-          <h1 class="hidden md:block text-white">Upcoming Events</h1>
-        </a>
-      </li>
-      <li class="bg-gray-800 w-full">
-        <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="NOTIFICATION">
-          <i class="bi bi-person-circle text-white"></i>
-          <h1 class="hidden md:block text-white">NOTIFICATION</h1>
-        </a>
-      </li>
+          <a  href="profile" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Student Profile">
+            <i class="bi bi-person-circle text-white"></i><h1 class="hidden md:block text-white">Student Profile</h1>
+          </a>
+        </li>
       <li class="w-full">
-        <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Notification">
+        <a href="notification" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Notification">
           <i class="bi bi-bell-fill text-white"></i>
           <h1 class="hidden md:block text-white">Notification</h1>
         </a>
@@ -97,7 +89,10 @@ if (!isset($_SESSION['authenticated'])) {
       </div>
 
       <!---------------- #NOTIFICATION ---------------------->
-
+      <div>
+        
+      </div>
+      
 
       <!---------------- #NOTIFICATION ---------------------->
     </div>
