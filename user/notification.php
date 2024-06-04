@@ -45,9 +45,9 @@ if (!isset($_SESSION['authenticated'])) {
         </a>
       </li>
       <li class="bg-gray-800 w-full">
-        <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Student Profile">
+        <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="NOTIFICATION">
           <i class="bi bi-person-circle text-white"></i>
-          <h1 class="hidden md:block text-white">Student Profile</h1>
+          <h1 class="hidden md:block text-white">NOTIFICATION</h1>
         </a>
       </li>
       <li class="w-full">
@@ -95,53 +95,13 @@ if (!isset($_SESSION['authenticated'])) {
         </div>
 
       </div>
-      <!------------------------------------------>
-      <?php
-      include '../db.php';
-      $studentProfile = $db->selectWithWhere('users','*','id_number="'.$_SESSION['id_number'].'"')[0];
-      $Sfullname = $studentProfile['full_name'];
-      $Semail = $studentProfile['email'];
-      $Ssection = $studentProfile['section'];
-      $Sid_number = $studentProfile['id_number'];
-      $Sdate_registered = $studentProfile['date_registered'];
-      ?>
-      <!---------------- #Student Profile ---------------------->
 
-      <div class="max-w-sm mx-auto bg-base-100 rounded-lg shadow-lg overflow-hidden mt-[15vh]">
+      <!---------------- #NOTIFICATION ---------------------->
 
-        <div class="bg-primary p-4 text-primary-content text-center">
 
-          <h2 class="text-2xl font-bold">Student Profile</h2>
-        </div>
-        <div class="p-6">
-        <div class="mb-4">
-            <label class="block text-base-content font-bold mb-2">ID Number:  </label>
-            <p id="fullName" class="text-base-content"><?php echo $Sid_number ?></p>
-          </div>
-          <div class="mb-4">
-            <label class="block text-base-content font-bold mb-2">Full Name: </label>
-            <p id="fullName" class="text-base-content"><?php echo $Sfullname ?></p>
-          </div>
-          <div class="mb-4">
-            <label class="block text-base-content font-bold mb-2">Section: </label>
-            <p id="section" class="text-base-content"><?php echo $Ssection ?></p>
-          </div>
-          <div class="mb-4">
-            <label class="block text-base-content font-bold mb-2">Email: </label>
-            <p id="fullName" class="text-base-content"><?php echo $Semail ?></p>
-          </div>
-          <div class="mb-4">
-            <label class="block text-base-content font-bold mb-2">Date Registered: </label>
-            <p id="fullName" class="text-base-content"><?php echo $Sdate_registered ?></p>
-          </div>
-          <div class="mb-4">
-
-        </div>
-      </div>
+      <!---------------- #NOTIFICATION ---------------------->
     </div>
   </div>
-</body>
-<!---------------- #Student Profile ---------------------->
 </body>
 
 </html>
