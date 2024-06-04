@@ -38,10 +38,11 @@ if (!isset($_SESSION['authenticated'])) {
         </a>
       </li>
       <li class="w-full">
-          <a  href="profile" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Student Profile">
-            <i class="bi bi-person-circle text-white"></i><h1 class="hidden md:block text-white">Student Profile</h1>
-          </a>
-        </li>
+        <a href="profile" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Student Profile">
+          <i class="bi bi-person-circle text-white"></i>
+          <h1 class="hidden md:block text-white">Student Profile</h1>
+        </a>
+      </li>
       <li class="w-full">
         <a href="notification" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Notification">
           <i class="bi bi-bell-fill text-white"></i>
@@ -89,11 +90,25 @@ if (!isset($_SESSION['authenticated'])) {
       </div>
 
       <!---------------- #NOTIFICATION ---------------------->
-      <div>
-        
+      <?php
+      include('../db.php');
+      if($db->selectWithWhere('record','time_in','full_name="'.$_SESSION['name'].'"')){
+        $student = $db->selectWithWhere('record','time_in','full_name="'.$_SESSION['name'].'"');
+        foreach($student as $time)
+        echo '<div class="flex justify-center items-center mt-[5vh]">
+        <div class="w-[30vh] lg:w-[50vh]">
+        <div role="alert" class="alert alert-success">
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>Attendance Recorded Successfully <p>Date: '.$time['time_in'].'</p></span>
+        </div>
       </div>
+      </div>';
       
-
+      }
+       ?>
+      
       <!---------------- #NOTIFICATION ---------------------->
     </div>
   </div>

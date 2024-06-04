@@ -52,6 +52,21 @@ class Database {
         
         return $rows;
     }
+    public function delete($table, $where = '') {
+        $sql = "DELETE FROM $table";
+        if ($where) {
+            $sql .= " WHERE $where";
+        }
+    
+        $result = $this->conn->query($sql);
+    
+        if ($result === false) {
+            die("Query failed: " . $this->conn->error);
+        }
+    
+        return $result;
+    }
+    
 
     public function insert($table, $data) {
         $columns = implode(", ", array_keys($data));

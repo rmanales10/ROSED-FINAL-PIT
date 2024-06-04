@@ -33,13 +33,13 @@ if (!isset($_SESSION['logged'])) {
             <i class="bi bi-house text-white"></i><h1 class="hidden md:block text-white">Dashboard</h1>
           </a>
         </li>
-        <li class="bg-gray-800  w-full">
-          <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="QR code">
+        <li class="w-full">
+          <a href="./qrcode.php" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="QR code">
             <i class="bi bi-qr-code text-white"></i><h1 class="hidden md:block text-white">Qr Code Scanner</h1>
           </a>
         </li>
-        <li class="w-full">
-          <a href="./attendance" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Attendance">
+        <li class="bg-gray-800 w-full">
+          <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Attendance">
             <i class="bi bi-file-earmark-check-fill text-white"></i><h1 class="hidden md:block text-white">View Attendance</h1>
           </a>
         </li>
@@ -92,67 +92,37 @@ if (!isset($_SESSION['logged'])) {
           
         </div>
 <!------------------------------------------>
+<div class="overflow-x-auto mt-10">
+  <table class="table">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th></th>
+        <th>Full Name</th>
+        <th>ID Number</th>
+        <th>Course & Section</th>
+        <th>Time In</th>
+      </tr>
+    </thead>
+    <tbody>
+        <?php 
+       include '../db.php';
+       $student = $db->selectWithWhere('record','*','');
+       foreach($student as $a){
+        ?>
+        <tr>
+        <th><?php echo $a['id']; ?></th>
+        <td><?php echo $a['full_name']; ?></td>
+        <td><?php echo $a['id_number']; ?></td>
+        <td><?php echo $a['section']; ?></td>
+        <td><?php echo $a['time_in']; ?></td>
+        <?php } ?>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <!---------------- #Quick Acces ---------------------->
-<h1 class="text-[20px] text-center mt-10 font-bold text-white">Attendance QR Scanner </h1>
-    <div class="flex flex-col mt-5 items-center justify-center text-center">
-    <div id="result" class="text-center mb-5"></div>
-        <main class="flex justify-center items-center w-[30vh] lg:w-[50vh]">
-            <div id="reader" class="w-[50vh]"></div>
-        </main>
-        
-    </div>
 
-    <script>
-        const scanner = new Html5QrcodeScanner('reader', {
-    qrbox: {
-        width: 150,
-        height: 150,
-    },
-    fps: 30,
-});
-
-let lastResult = ''; // To store the last scanned result
-
-scanner.render(success, error);
-
-function success(result) {
-    if (result === lastResult) {
-        document.getElementById('result').innerHTML = `
-            <div class="alert alert-info">
-                <span>Already Recorded!<br>${result}</span>
-            </div>
-        `;
-        return;
-    }
-
-    lastResult = result; // Update last scanned result
-
-    document.getElementById('result').innerHTML = `
-        <div class="alert alert-success">
-            <span>Recorded Successfully!<br>${result}</span>
-        </div>
-    `;
-
-    // Send scanned data to attend.php via AJAX
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'attend.php', true);
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log(xhr.responseText); // Response from PHP script
-        }
-    };
-    xhr.send('data=' + encodeURIComponent(result));
-
-    //scanner.clear();
-    //document.getElementById('reader').remove();
-}
-
-function error(err) {
-    console.error(err);
-}
-
-    </script>
         
                </div>
             

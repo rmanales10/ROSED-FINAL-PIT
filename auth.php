@@ -18,14 +18,18 @@ $_SESSION['name'] = $Sfullname;
 header('Location: user/dashboard');
 exit();
 }
+else if($user == "0000000000" && $pass == "admin123"){
+    $_SESSION['logged'] = true;
+    $_SESSION['name'] ='Admin Dashboard';
+    header('Location: admin/dashboard');
+    exit();
+    }
 else{
 $_SESSION['error'] = 'Wrong Id Number or Password';
 header('Location: ./');
 exit();
 }
 }
-else
-echo "error";
 /*
 function g($string, $start, $end) {
     $str = explode($start, $string);
