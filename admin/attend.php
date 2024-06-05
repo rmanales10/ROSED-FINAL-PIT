@@ -1,6 +1,6 @@
 <?php
 // Include your database connection script
-include './db.php';
+include '../db.php';
 
 // Function to capture a 10-digit number from the input
 function captureTenDigitNumber($input) {
@@ -15,11 +15,12 @@ function captureTenDigitNumber($input) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['data'])) {
-        $data = $_POST['data'];
-
+    if (isset($_POST['time_in'])) {
+        date_default_timezone_set('Asia/Manila');
+        $currentDateTime = date("Y-m-d H:i:s");
+        $data = $_POST['time_in'];
         $result = captureTenDigitNumber($data);
-
+        
         if ($result) {
             // Establish database connection
             $db = new mysqli('localhost', 'root', '', 'attendance');
@@ -33,26 +34,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt = $db->prepare('SELECT * FROM users WHERE id_number = ?');
             $stmt->bind_param('s', $result);
             $stmt->execute();
-            $result = $stmt->get_result();
+            $queryResult = $stmt->get_result();
 
-            if ($result->num_rows > 0) {
-                $student = $result->fetch_assoc();
+            if ($queryResult->num_rows > 0) {
+                $student = $queryResult->fetch_assoc();
                 $full_name = $student['full_name'];
                 $section = $student['section'];
                 $id_number = $student['id_number'];
 
                 // Prepare and execute query to insert data into the database
-                $stmt = $db->prepare('INSERT INTO record (full_name, section, id_number) VALUES (?, ?, ?)');
-                $stmt->bind_param('sss', $full_name, $section, $id_number);
+                $stmt = $db->prepare('INSERT INTO record (full_name, section, id_number, time_in) VALUES (?, ?, ?, ?)');
+                $stmt->bind_param('ssss', $full_name, $section, $id_number, $currentDateTime);
                 $success = $stmt->execute();
 
                 if ($success) {
                     echo "Data inserted successfully!";
                 } else {
-                    echo "Failed to insert data.";
+                    echo "Failed to insert data: " . $stmt->error;
                 }
             } else {
                 echo "No student found with the provided ID number.";
+            }
+
+            // Close the prepared statement and connection
+            $stmt->close();
+            $db->close();
+        } else {
+            echo "No 10-digit number found in the input.";
+        }
+    } elseif (isset($_POST['time_out'])) {
+        date_default_timezone_set('Asia/Manila');
+        $currentDateTime = date("Y-m-d H:i:s");
+        $data1 = $_POST['time_out'];
+        $results = captureTenDigitNumber($data1);
+
+        if ($results) {
+            // Establish database connection
+            $db = new mysqli('localhost', 'root', '', 'attendance');
+
+            // Check connection
+            if ($db->connect_error) {
+                die("Connection failed: " . $db->connect_error);
+            }
+
+            // Prepare and execute query to update the time_out field
+            $stmt = $db->prepare('UPDATE record SET time_out = ? WHERE id_number = ? AND time_out IS NULL');
+            $stmt->bind_param("si", $currentDateTime, $results);
+            $success = $stmt->execute();
+
+            if ($success) {
+                echo "time_out field updated successfully!";
+            } else {
+                echo "Failed to update time_out field: " . $stmt->error;
             }
 
             // Close the prepared statement and connection

@@ -93,66 +93,84 @@ if (!isset($_SESSION['logged'])) {
         </div>
 <!------------------------------------------>
 <!---------------- #Quick Acces ---------------------->
-<h1 class="text-[20px] text-center mt-10 font-bold text-white">Attendance QR Scanner </h1>
-    <div class="flex flex-col mt-5 items-center justify-center text-center">
+<h1 class="text-[20px] text-center mt-10 font-bold text-white">Attendance QR Scanner</h1>
+<div class="flex flex-col mt-5 items-center justify-center text-center">
     <div id="result" class="text-center mb-5"></div>
-        <main class="flex justify-center items-center w-[30vh] lg:w-[50vh]">
-            <div id="reader" class="w-[50vh]"></div>
-        </main>
-        
+    <div class="mb-5">
+        <button id="timeInButton" class="btn btn-success">Time In</button>
+        <button id="timeOutButton" class="btn btn-info">Time Out</button>
     </div>
+    <main id="scannerContainer" class="flex justify-center items-center w-[30vh] lg:w-[50vh] hidden">
+        <div id="reader" class="w-[50vh]"></div>
+    </main>
+</div>
 
-    <script>
-        const scanner = new Html5QrcodeScanner('reader', {
-    qrbox: {
-        width: 150,
-        height: 150,
-    },
-    fps: 30,
-});
+<script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+<script>
+    const scanner = new Html5QrcodeScanner('reader', {
+        qrbox: {
+            width: 150,
+            height: 150,
+        },
+        fps: 30,
+    });
 
-let lastResult = ''; // To store the last scanned result
+    let lastResult = ''; // To store the last scanned result
+    let action = 'timeIn'; // Default action
 
-scanner.render(success, error);
+    document.getElementById('timeInButton').addEventListener('click', () => {
+        action = 'timeIn';
+        document.getElementById('scannerContainer').classList.remove('hidden');
+        scanner.render(success, error);
+        console.log('Time In button clicked');
+    });
 
-function success(result) {
-    if (result === lastResult) {
+    document.getElementById('timeOutButton').addEventListener('click', () => {
+        action = 'timeOut';
+        document.getElementById('scannerContainer').classList.remove('hidden');
+        scanner.render(success, error);
+        console.log('Time Out button clicked');
+    });
+
+    function success(result) {
+        if (result === lastResult) {
+            document.getElementById('result').innerHTML = `
+                <div class="alert alert-info">
+                    <span>Already Recorded!<br>${result} - ${action}</span>
+                </div>
+            `;
+            return;
+        }
+
+        lastResult = result; // Update last scanned result
+
         document.getElementById('result').innerHTML = `
-            <div class="alert alert-info">
-                <span>Already Recorded!<br>${result}</span>
+            <div class="alert alert-success">
+                <span>Recorded Successfully!<br>${result} - ${action}</span>
             </div>
         `;
-        return;
+
+        // Send scanned data to attend.php via AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'attend.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log(xhr.responseText); // Response from PHP script
+            }
+        };
+
+        // Change the key based on the action
+        let key = action === 'timeIn' ? 'time_in' : 'time_out';
+        xhr.send(key + '=' + encodeURIComponent(result));
     }
 
-    lastResult = result; // Update last scanned result
+    function error(err) {
+        console.error(err);
+    }
+</script>
 
-    document.getElementById('result').innerHTML = `
-        <div class="alert alert-success">
-            <span>Recorded Successfully!<br>${result}</span>
-        </div>
-    `;
 
-    // Send scanned data to attend.php via AJAX
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'attend.php', true);
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log(xhr.responseText); // Response from PHP script
-        }
-    };
-    xhr.send('data=' + encodeURIComponent(result));
-
-    //scanner.clear();
-    //document.getElementById('reader').remove();
-}
-
-function error(err) {
-    console.error(err);
-}
-
-    </script>
         
                </div>
             

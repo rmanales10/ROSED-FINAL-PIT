@@ -97,11 +97,12 @@ if (!isset($_SESSION['logged'])) {
     <!-- head -->
     <thead>
       <tr>
-        <th></th>
+        <th>Student ID</th>
         <th>Full Name</th>
         <th>ID Number</th>
         <th>Course & Section</th>
-        <th>Time In</th>
+        <th>Date & Time In</th>
+        <th>Date & Time Out</th>
       </tr>
     </thead>
     <tbody>
@@ -115,7 +116,13 @@ if (!isset($_SESSION['logged'])) {
         <td><?php echo $a['full_name']; ?></td>
         <td><?php echo $a['id_number']; ?></td>
         <td><?php echo $a['section']; ?></td>
-        <td><?php echo $a['time_in']; ?></td>
+        <td><?php echo date("F j Y h:i:s A", strtotime($a['time_in'])); ?></td>
+        <td><?php
+        if(isset($a['time_out']))
+        echo date("F j Y h:i:s A", strtotime($a['time_out']));
+        else
+        echo "Not Yet Recorded";
+        ?></td>
         <?php } ?>
       </tr>
     </tbody>
