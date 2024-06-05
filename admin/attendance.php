@@ -21,7 +21,7 @@ if (!isset($_SESSION['logged'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Document</title>
   </head>
-  <body class="m-0 bg-zinc-900">
+  <body class="m-0 bg-zinc-900 text-white">
     <div class="flex">
     <ul class="menu bg-base-200 gap-5 h-full w-[20%] flex flex-col items-center justify-center bg-zinc-900 fixed z-50">
         <div class="flex justify-center flex-col items-center gap-3 mt-5">
@@ -34,7 +34,7 @@ if (!isset($_SESSION['logged'])) {
           </a>
         </li>
         <li class="w-full">
-          <a href="./qrcode.php" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="QR code">
+          <a href="./qrcode" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="QR code">
             <i class="bi bi-qr-code text-white"></i><h1 class="hidden md:block text-white">Qr Code Scanner</h1>
           </a>
         </li>
