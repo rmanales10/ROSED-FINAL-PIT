@@ -6,7 +6,7 @@ if (!isset($_SESSION['logged'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,32 +29,32 @@ if (!isset($_SESSION['logged'])) {
         </div>
         <li class="bg-gray-800 rounded-sm w-full">
           <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Dashboard">
-            <i class="bi bi-house text-white"></i><h1 class="hidden md:block text-white">Dashboard</h1>
+            <i class="bi bi-house "></i><h1 class="hidden md:block ">Dashboard</h1>
           </a>
         </li>
         <li class="w-full">
           <a href="./qrcode" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="QR code">
-            <i class="bi bi-qr-code text-white"></i><h1 class="hidden md:block text-white">Qr Code Scanner</h1>
+            <i class="bi bi-qr-code "></i><h1 class="hidden md:block ">Qr Code Scanner</h1>
           </a>
         </li>
         <li class="w-full">
           <a href="./attendance" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Attendance">
-            <i class="bi bi-file-earmark-check-fill text-white"></i><h1 class="hidden md:block text-white">View Attendance</h1>
+            <i class="bi bi-file-earmark-check-fill "></i><h1 class="hidden md:block ">View Attendance</h1>
           </a>
         </li>
         <li class="w-full">
           <a href="./manage.php" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Student Profile">
-            <i class="bi bi-person-circle text-white"></i><h1 class="hidden md:block text-white">Manage User</h1>
+            <i class="bi bi-person-circle "></i><h1 class="hidden md:block ">Manage User</h1>
           </a>
         </li>
         <li class="w-full">
           <a href="./notification" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Notification">
-            <i class="bi bi-bell-fill text-white"></i><h1 class="hidden md:block text-white">Manage Notification</h1>
+            <i class="bi bi-bell-fill "></i><h1 class="hidden md:block ">Manage Notification</h1>
           </a>
         </li>
         <li class="w-full">
           <a href="../logout.php" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Logout">
-            <i class="bi bi-box-arrow-left text-white"></i><h1 class="hidden md:block text-white">Logout</h1>
+            <i class="bi bi-box-arrow-left "></i><h1 class="hidden md:block ">Logout</h1>
           </a>
         </li>
       </ul>

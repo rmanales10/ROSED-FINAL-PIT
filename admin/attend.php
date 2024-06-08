@@ -41,10 +41,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $full_name = $student['full_name'];
                 $section = $student['section'];
                 $id_number = $student['id_number'];
+                $user_id = $student['user_id'];
 
                 // Prepare and execute query to insert data into the database
-                $stmt = $db->prepare('INSERT INTO record (full_name, section, id_number, time_in) VALUES (?, ?, ?, ?)');
-                $stmt->bind_param('ssss', $full_name, $section, $id_number, $currentDateTime);
+                $stmt = $db->prepare('INSERT INTO record (full_name, section, id_number, time_in, user_id) VALUES (?, ?, ?, ?, ?)');
+                $stmt->bind_param('sssss', $full_name, $section, $id_number, $currentDateTime ,$user_id);
                 $success = $stmt->execute();
 
                 if ($success) {

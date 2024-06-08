@@ -28,38 +28,38 @@ if (!isset($_SESSION['logged'])) {
       </div>
       <li class="rounded-sm w-full">
         <a href="./dashboard" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Dashboard">
-          <i class="bi bi-house text-white"></i>
-          <h1 class="hidden md:block text-white">Dashboard</h1>
+          <i class="bi bi-house "></i>
+          <h1 class="hidden md:block ">Dashboard</h1>
         </a>
       </li>
       <li class="w-full">
         <a href="./qrcode" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="QR code">
-          <i class="bi bi-qr-code text-white"></i>
-          <h1 class="hidden md:block text-white">Qr Code Scanner</h1>
+          <i class="bi bi-qr-code "></i>
+          <h1 class="hidden md:block ">Qr Code Scanner</h1>
         </a>
       </li>
       <li class="w-full">
         <a href="./attendance" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Attendance">
-          <i class="bi bi-file-earmark-check-fill text-white"></i>
-          <h1 class="hidden md:block text-white">View Attendance</h1>
+          <i class="bi bi-file-earmark-check-fill "></i>
+          <h1 class="hidden md:block ">View Attendance</h1>
         </a>
       </li>
       <li class="bg-gray-800 w-full">
         <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Student Profile">
-          <i class="bi bi-person-circle text-white"></i>
-          <h1 class="hidden md:block text-white">Manage User</h1>
+          <i class="bi bi-person-circle "></i>
+          <h1 class="hidden md:block ">Manage User</h1>
         </a>
       </li>
       <li class="w-full">
         <a href="./notification" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Notification">
-          <i class="bi bi-bell-fill text-white"></i>
-          <h1 class="hidden md:block text-white">Manage Notification</h1>
+          <i class="bi bi-bell-fill "></i>
+          <h1 class="hidden md:block ">Manage Notification</h1>
         </a>
       </li>
       <li class="w-full">
         <a href="../logout.php" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Logout">
-          <i class="bi bi-box-arrow-left text-white"></i>
-          <h1 class="hidden md:block text-white">Logout</h1>
+          <i class="bi bi-box-arrow-left "></i>
+          <h1 class="hidden md:block ">Logout</h1>
         </a>
       </li>
     </ul>
@@ -117,13 +117,13 @@ if (!isset($_SESSION['logged'])) {
         foreach ($student as $a) {
         ?>
           <tr>
-            <th><?php echo $a['id']; ?></th>
+            <th><?php echo $a['user_id']; ?></th>
             <td><?php echo $a['full_name']; ?></td>
             <td><?php echo $a['id_number']; ?></td>
             <td><?php echo $a['section']; ?></td>
             <td><?php echo $a['email']; ?></td>
             <td><?php echo $a['date_registered']; ?></td>
-            <td><button onclick="confirmDelete(<?php echo $a['id']; ?>)"><i class="bi bi-trash3"></i></button></td>
+            <td><button onclick="confirmDelete(<?php echo $a['user_id']; ?>)"><i class="bi bi-trash3"></i></button></td>
           </tr>
         <?php } ?>
         </tbody>

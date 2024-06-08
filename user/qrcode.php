@@ -95,7 +95,7 @@ if (!isset($_SESSION['authenticated'])) {
 <div class="flex flex-col mt-10 items-center justify-center text-center gap-10">
   <?php
   include '../db.php';
-  $studentProfile = $db->selectWithWhere('attendance_users','*','id_number="'.$_SESSION['id_number'].'"')[0];
+  $studentProfile = $db->selectWithWhere('users','*','id_number="'.$_SESSION['id_number'].'"')[0];
   $Sfullname = $studentProfile['full_name'];
   $Ssection = $studentProfile['section'];
   $Sid_number = $studentProfile['id_number'];
