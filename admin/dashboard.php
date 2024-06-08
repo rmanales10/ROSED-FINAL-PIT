@@ -63,7 +63,7 @@ if (!isset($_SESSION['logged'])) {
         
         <!-----------------navbar------------------>
 
-        <div class="navbar bg-base-100">
+        <div class="navbar bg-base-100 rounded-3xl">
           <div class="flex-1">
             <a class="btn btn-ghost text-xl"><img src="../src/ustp.jpg" class="w-[40px] rounded-full"></a>
             <p>University of Science & Technology of Southern Philippines</p>
@@ -91,62 +91,93 @@ if (!isset($_SESSION['logged'])) {
           
         </div>
 <!------------------------------------------>
-<div role="alert" class="alert alert-info mt-10">
-  <span>Welcome, <?php echo $_SESSION['name']; ?></span>
+
+<?php
+include '../db.php';
+$totaluser = $db->selectWithWhere('attendance_users ','*');
+$totals = 0;
+foreach($totaluser as $total){
+$totals++;}
+?>
+<div class="flex justify-center items-center mt-10 ">
+  <div class="flex flex-col gap-10 bg-[#151C39] items-center px-5 py-6 rounded-3xl outline outline-1 outline-slate-500 lg:flex-row">
+  <div class="flex gap-5 items-center">
+    <h1 class="text-2xl">Total User</h1>
+    <span class="bg-[#13E8FB] text-black font-bold p-1 rounded-full text-[10px] px-4"><?php echo $totals ?></span>
+  </div>
+
+
+  <span class="hidden lg:block"><svg width="1" height="50" viewBox="0 0 1 151" fill="none" xmlns="http://www.w3.org/2000/svg">
+<line x1="0.5" x2="0.5" y2="151" stroke="white"/>
+</svg>
+</span>
+
+<?php
+$totaltimein = $db->selectWithWhere('record','time_in');
+$totalt = 0;
+foreach($totaltimein as $total){
+$totalt++;}
+?>
+
+
+  <div class="flex gap-5 items-center px-10">
+    <h1 class="text-2xl">Total Time in</h1>
+    <span class="bg-[#13E8FB] text-black font-bold p-1 rounded-full text-[10px] px-4"><?php echo $totalt ?></span>
+  </div>
+
+  <span class="hidden lg:block"><svg width="1" height="50" viewBox="0 0 1 151" fill="none" xmlns="http://www.w3.org/2000/svg">
+<line x1="0.5" x2="0.5" y2="151" stroke="white"/>
+</svg>
+</span>
+
+
+
+<?php
+$totaltimeout = $db->selectWithWhere('record','time_out');
+$totalto = 0;
+foreach($totaltimeout as $totalo){
+$totalto++;}
+?>
+
+  <div class="flex gap-5 items-center">
+    <h1 class="text-2xl">Total Time out</h1>
+    <span class="bg-[#13E8FB] text-black font-bold p-1 rounded-full text-[10px] px-4"><?php echo $totalto ?></span>
+  </div>
+  </div>
 </div>
-<!-- #Quick Acces -->
-<h1 class="text-[2rem] text-center mt-10 font-bold">Quick Access</h1>
-<div class="flex flex-col mt-10 items-center justify-center text-center gap-10 lg:flex-row">
 
-<a href="dashboard.php" class="card w-96 h-[192px] bg-base-100 shadow-xl image-full">
-  <figure><img src="../src/image-qr-code.webp" /></figure>
-  <div class="card-body">
-    <h2 class="card-title">QR CODE</h2>
-    <p>A QR code for student verification is a digital solution used to streamline and secure the process of verifying student identities.</p>
-    <div class="card-actions justify-end">
-    </div>
+<div class="flex items-center justify-center mt-10">
+  <div>
+  <div class="radial-progress text-primary" style="--value:70;" role="progressbar">70%</div>
   </div>
-</a>
-<a href="dashboard.php" class="card w-96 h-[192px] bg-base-100 shadow-xl image-full">
-  <figure><img src="../src/attendance.jpg" /></figure>
-  <div class="card-body">
-    <h2 class="card-title">ATTENDANCE</h2>
-    <p>Attendance refers to the act of being present at a designated place during a specified time.</p>
-    <div class="card-actions justify-end">
-    </div>
-  </div>
-</a>
-<!-- #Quick Acces -->
-       </div>
-       <div class="flex flex-col mt-10 items-center justify-center text-center gap-10 lg:flex-row">
+</div>
 
-        <a href="dashboard.php" class="card w-96 h-[192px] bg-base-100 shadow-xl image-full">
-          <figure><img src="../src/eenves.jpg "  /></figure>
-          <div class="card-body">
-            <h2 class="card-title">UPCOMING EVENTS</h2>
-            <p>Upcoming events are scheduled activities or occasions that are set to occur in the near future.</p>
-            <div class="card-actions justify-end">
-            </div>
-          </div>
-        </a>
-        <a href="dashboard.php" class="card w-96 h-[192px] bg-base-100 shadow-xl image-full">
-          <figure><img src="../src/penalty.jpg"  /></figure>
-          <div class="card-body">
-            <h2 class="card-title">PENALTY</h2>
-            <p>Penalty refers to a punitive consequence or disciplinary action imposed as a result of violating rules, regulations, or failing to meet obligations.</p>
-            <div class="card-actions justify-end">
-            </div>
-          </div>
-        </a>
-        <!-- #Quick Acces -->
-        
-               </div>
-               <footer class="footer footer-center p-4 bg-base-300 text-base-content mt-10">
-                <aside>
-                  <p>Copyright © 2024 - WAla ko kabalo ani</p>
-                </aside>
-              </footer>
-               
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!------------------------------------------>
+
+
+    </div>
     </div>
   </body>
 </html>

@@ -91,7 +91,7 @@ if (!isset($_SESSION['authenticated'])) {
       <!------------------------------------------>
       <?php
       include '../db.php';
-      $studentProfile = $db->selectWithWhere('users','*','id_number="'.$_SESSION['id_number'].'"')[0];
+      $studentProfile = $db->selectWithWhere('attendance_users','*','id_number="'.$_SESSION['id_number'].'"')[0];
       $Sfullname = $studentProfile['full_name'];
       $Semail = $studentProfile['email'];
       $Ssection = $studentProfile['section'];

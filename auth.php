@@ -9,8 +9,8 @@ if(isset($_POST['idNumberInput']) && $_POST['PasswordInput']){
 $user = $_POST['idNumberInput'];
 $pass = $_POST['PasswordInput'];
 
-if($db->selectWithWhere('users','*','id_number="'.$user.'" AND password="'.$pass.'"')){
-$student = $db->selectWithWhere('users','*','id_number="'.$user.'" AND password="'.$pass.'"')[0];
+if($db->selectWithWhere('attendance_users ','*','id_number="'.$user.'" AND password="'.$pass.'"')){
+$student = $db->selectWithWhere('attendance_users ','*','id_number="'.$user.'" AND password="'.$pass.'"')[0];
 $Sfullname = $student['full_name'];
 $_SESSION['authenticated'] = true;
 $_SESSION['id_number'] = $user;
