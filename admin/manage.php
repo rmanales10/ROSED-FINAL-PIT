@@ -113,7 +113,7 @@ if (!isset($_SESSION['logged'])) {
           <tbody>
           <?php
         include '../db.php';
-        $student = $db->selectWithWhere('attendance_users ', '*', '');
+        $student = $db->selectWithWhere('users ', '*', '');
         foreach ($student as $a) {
         ?>
           <tr>

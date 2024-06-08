@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             // Prepare and execute query to select student information
-            $stmt = $db->prepare('SELECT * FROM attendance_users WHERE id_number = ?');
+            $stmt = $db->prepare('SELECT * FROM users WHERE id_number = ?');
             $stmt->bind_param('s', $result);
             $stmt->execute();
             $queryResult = $stmt->get_result();

@@ -121,7 +121,7 @@ if (!isset($_SESSION['logged'])) {
         if(isset($a['time_out']))
         echo date("F j Y h:i:s A", strtotime($a['time_out']));
         else
-        echo "Not Yet Recorded";
+        echo "Not Yet recorded";
         ?></td>
         <?php } ?>
       </tr>

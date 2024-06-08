@@ -94,7 +94,7 @@ if (!isset($_SESSION['logged'])) {
 
 <?php
 include '../db.php';
-$totaluser = $db->selectWithWhere('attendance_users ','*');
+$totaluser = $db->selectWithWhere('users ','*');
 $totals = 0;
 foreach($totaluser as $total){
 $totals++;}

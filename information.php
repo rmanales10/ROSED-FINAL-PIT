@@ -18,7 +18,7 @@ if (isset($_POST['fullname']) && isset($_POST['idnumber']) && isset($_POST['sect
         'email' => $email,
         'password' => $password
     ];
-    $insertId = $db->insert('attendance_users ', $newUserData);
+    $insertId = $db->insert('users ', $newUserData);
     echo $_SESSION['success'] = 'Registered Successfully';
     header('location: ./'); 
     exit();
