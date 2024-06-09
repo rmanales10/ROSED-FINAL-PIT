@@ -54,7 +54,7 @@ if (!isset($_SESSION['logged'])) {
           </a>
         </li>
         <li class="w-full">
-          <a href="../logout.php" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Logout">
+          <a href="../logout" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Logout">
             <i class="bi bi-box-arrow-left "></i><h1 class="hidden md:block ">Logout</h1>
           </a>
         </li>

@@ -29,28 +29,28 @@ if (!isset($_SESSION['authenticated'])) {
         </div>
         <li class="bg-gray-800 rounded-sm w-full">
           <a class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Homepage">
-            <i class="bi bi-house text-white"></i><h1 class="hidden md:block text-white">Dashboard</h1>
+            <i class="bi bi-house "></i><h1 class="hidden md:block ">Dashboard</h1>
           </a>
         </li>
         <li class="w-full">
           <a href="qrcode" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="QR code">
-            <i class="bi bi-qr-code text-white"></i><h1 class="hidden md:block text-white">QR code for attendance</h1>
+            <i class="bi bi-qr-code "></i><h1 class="hidden md:block ">QR code for attendance</h1>
           </a>
         </li>
        
         <li class="w-full">
           <a  href="profile" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Student Profile">
-            <i class="bi bi-person-circle text-white"></i><h1 class="hidden md:block text-white">Student Profile</h1>
+            <i class="bi bi-person-circle "></i><h1 class="hidden md:block ">Student Profile</h1>
           </a>
         </li>
         <li class="w-full">
           <a href="notification" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Notification">
-            <i class="bi bi-bell-fill text-white"></i><h1 class="hidden md:block text-white">Notification</h1>
+            <i class="bi bi-bell-fill "></i><h1 class="hidden md:block ">Notification</h1>
           </a>
         </li>
         <li class="w-full">
           <a href="../logout" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Logout">
-            <i class="bi bi-box-arrow-left text-white"></i><h1 class="hidden md:block text-white">Logout</h1>
+            <i class="bi bi-box-arrow-left "></i><h1 class="hidden md:block ">Logout</h1>
           </a>
         </li>
       </ul>
@@ -94,7 +94,7 @@ if (!isset($_SESSION['authenticated'])) {
 <h1 class="text-[2rem] text-center mt-10 font-bold">Quick Access</h1>
 <div class="flex flex-col mt-10 items-center justify-center text-center gap-10 lg:flex-row">
 
-<a href="dashboard.php" class="card w-96 h-[192px] bg-base-100 shadow-xl image-full">
+<a href="./qrcode.php" class="card w-96 h-[192px] bg-base-100 shadow-xl image-full">
   <figure><img src="../src/image-qr-code.webp" /></figure>
   <div class="card-body">
     <h2 class="card-title">QR CODE</h2>
@@ -103,10 +103,15 @@ if (!isset($_SESSION['authenticated'])) {
     </div>
   </div>
 </a>
-<a href="dashboard.php" class="card w-96 h-[192px] bg-base-100 shadow-xl image-full">
+
+<!-- CLICK ATTENANCE MODAL -->
+<a onclick="attandance.showModal()" class="card w-96 h-[192px] bg-base-100 shadow-xl image-full cursor-pointer">
+
+
+
   <figure><img src="../src/attendance.jpg" /></figure>
   <div class="card-body">
-    <h2 class="card-title">ATTENDANCE</h2>
+    <h2 class="card-title">VIEW ALL ATTENDANCE</h2>
     <p>Attendance refers to the act of being present at a designated place during a specified time.</p>
     <div class="card-actions justify-end">
     </div>
@@ -144,6 +149,62 @@ if (!isset($_SESSION['authenticated'])) {
               </footer>
                
     </div>
+
+
+<!-- Modal for Attendance -->
+    <dialog id="attandance" class="modal">
+  <div class="modal-box">
+  <div class="overflow-x-auto mt-10">
+  <table class="table">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th>Student ID</th>
+        <th>Full Name</th>
+        <th>ID Number</th>
+        <th>Course & Section</th>
+        <th>Date & Time In</th>
+        <th>Date & Time Out</th>
+      </tr>
+    </thead>
+    <tbody>
+        <?php 
+       include '../db.php';
+      $idnumberrrrrrrrrrr = $_SESSION['id_number'];
+       $student = $db->selectWithWhere('record','*','id_number= "'.$idnumberrrrrrrrrrr.'"');
+       foreach($student as $a){
+        ?>
+        <tr>
+        <th><?php echo $a['user_id']; ?></th>
+        <td><?php echo $a['full_name']; ?></td>
+        <td><?php echo $a['id_number']; ?></td>
+        <td><?php echo $a['section']; ?></td>
+        <td><?php echo date("F j Y h:i:s A", strtotime($a['time_in'])); ?></td>
+        <td><?php
+        if(isset($a['time_out']))
+        echo date("F j Y h:i:s A", strtotime($a['time_out']));
+        else
+        echo "Not Yet recorded";
+        ?></td>
+        <?php } ?>
+      </tr>
+    </tbody>
+  </table>
+</div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<!-- Modal for Attendance -->
+
+
+
+
   </body>
 </html>
 

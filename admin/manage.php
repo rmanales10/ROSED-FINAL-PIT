@@ -102,7 +102,7 @@ if (!isset($_SESSION['logged'])) {
           <!-- head -->
           <thead>
             <tr>
-              <th></th>
+              <th>Student ID</th>
               <th>Full Name</th>
               <th>ID Number</th>
               <th>Course & Section</th>

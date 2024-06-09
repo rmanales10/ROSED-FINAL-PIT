@@ -27,32 +27,32 @@ if (!isset($_SESSION['authenticated'])) {
       </div>
       <li class=" rounded-sm w-full">
         <a href="dashboard" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Homepage">
-          <i class="bi bi-house text-white"></i>
-          <h1 class="hidden md:block text-white">Dashboard</h1>
+          <i class="bi bi-house "></i>
+          <h1 class="hidden md:block ">Dashboard</h1>
         </a>
       </li>
       <li class="w-full">
         <a href="qrcode" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="QR code">
-          <i class="bi bi-qr-code text-white"></i>
-          <h1 class="hidden md:block text-white">QR code for attendance</h1>
+          <i class="bi bi-qr-code "></i>
+          <h1 class="hidden md:block ">QR code for attendance</h1>
         </a>
       </li>
       <li class="w-full">
         <a href="profile" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Student Profile">
-          <i class="bi bi-person-circle text-white"></i>
-          <h1 class="hidden md:block text-white">Student Profile</h1>
+          <i class="bi bi-person-circle "></i>
+          <h1 class="hidden md:block ">Student Profile</h1>
         </a>
       </li>
       <li class="w-full">
         <a href="notification" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Notification">
-          <i class="bi bi-bell-fill text-white"></i>
-          <h1 class="hidden md:block text-white">Notification</h1>
+          <i class="bi bi-bell-fill "></i>
+          <h1 class="hidden md:block ">Notification</h1>
         </a>
       </li>
       <li class="w-full">
         <a href="../logout" class="tooltip tooltip-right flex items-center justify-center md:justify-start gap-2" data-tip="Logout">
-          <i class="bi bi-box-arrow-left text-white"></i>
-          <h1 class="hidden md:block text-white">Logout</h1>
+          <i class="bi bi-box-arrow-left "></i>
+          <h1 class="hidden md:block ">Logout</h1>
         </a>
       </li>
     </ul>
@@ -82,7 +82,7 @@ if (!isset($_SESSION['authenticated'])) {
                 </a>
               </li>
               <li><a>Settings</a></li>
-              <li><a>Logout</a></li>
+              <li><a href="../logout">Logout</a></li>
             </ul>
           </div>
         </div>
