@@ -102,7 +102,7 @@ $totals++;}
 <div class="flex justify-center items-center mt-10  ">
   <div class="flex flex-col gap-7 bg-[#151C39] items-center px-5  py-6 rounded-3xl outline outline-1 outline-slate-500 lg:flex-row lg:gap-32 lg:px-40">
   <div class="flex gap-5 items-center flex-row lg:flex-col">
-    <h1 class="text-2xl">Total User</h1>
+    <h1 class="text-2xl font-bold">Total User</h1>
     <span class="bg-[#13E8FB] text-black font-bold p-1 rounded-full text-[10px] px-4"><?php echo $totals ?></span>
   </div>
 
@@ -121,7 +121,7 @@ $totalt++;}
 
 
 <div class="flex gap-5 items-center flex-row lg:flex-col">
-    <h1 class="text-2xl">Total Time in</h1>
+    <h1 class="text-2xl font-bold">Total Time in</h1>
     <span class="bg-[#13E8FB] text-black font-bold p-1 rounded-full text-[10px] px-4"><?php echo $totalt ?></span>
   </div>
 
@@ -140,17 +140,20 @@ $totalto++;}
 ?>
 
 <div class="flex gap-5 items-center flex-row lg:flex-col">
-    <h1 class="text-2xl">Total Time out</h1>
+    <h1 class="text-2xl font-bold">Total Time out</h1>
     <span class="bg-[#13E8FB] text-black font-bold p-1 rounded-full text-[10px] px-4"><?php echo $totalto ?></span>
   </div>
   </div>
 </div>
 
-<div class="flex items-center justify-center mt-10">
+
+
+
+<!-- <div class="flex items-center justify-center mt-10">
   <div>
   <div class="radial-progress text-primary" style="--value:70;" role="progressbar">70%</div>
   </div>
-</div>
+</div> -->
 
 
 
