@@ -10,6 +10,7 @@ if (!isset($_SESSION['logged'])) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../src/icon.png" type="image/png">
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css"
       rel="stylesheet"
@@ -18,7 +19,7 @@ if (!isset($_SESSION['logged'])) {
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js" defer ></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title>Admin Dashboard</title>
+    <title>Dashboard</title>
   </head>
   <body class="m-0 bg-zinc-900">
     <div class="flex">

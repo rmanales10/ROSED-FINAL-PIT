@@ -56,8 +56,7 @@ body {
   text-shadow: -8px 0px 0px #fff;
 }
 
-.notfound .notfound-404 h3 {
-  font-family: 'Cabin', sans-serif;
+.notfound .notfound-404 h3 {  font-family: 'Cabin', sans-serif;
   position: relative;
   font-size: 16px;
   font-weight: 700;
