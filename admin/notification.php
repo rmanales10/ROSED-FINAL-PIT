@@ -93,6 +93,31 @@ if (!isset($_SESSION['logged'])) {
           
         </div>
 <!------------------------------------------>
+<form action="send.php" method="POST">
+<div class="justify-center flex flex-col mt-32 mx-32 gap-5">
+<label class="input input-bordered flex items-center gap-2">
+  Title :
+  <input type="text" class="grow" name="title" placeholder=" " />
+</label>
+<label class="input input-bordered flex items-center gap-2">
+  Purpose : 
+  <input type="text" class="grow" name="purpose" placeholder="" />
+</label>
+<label class="input input-bordered flex items-center gap-2">
+  Description : 
+  <input type="text" class="grow" name="description" placeholder=" " />
+</label>
+<button type="submit" class="btn btn-outline-success">Send Notification</button>
+</div>
+</form>
+<?php
+if(isset($_SESSION['notif'])){
+  echo $_SESSION['notif'];
+}
+else
+$_SESSION['notif'] ='';
+
+?>
 <!---------------- #Quick Acces ---------------------->
 
         

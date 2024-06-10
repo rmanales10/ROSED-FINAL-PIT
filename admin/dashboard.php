@@ -92,64 +92,56 @@ if (!isset($_SESSION['logged'])) {
           
         </div>
 <!------------------------------------------>
-
 <?php
 include '../db.php';
-$totaluser = $db->selectWithWhere('users ','*');
-$totals = 0;
-foreach($totaluser as $total){
-$totals++;}
+
+// Fetch total users
+$totaluser = $db->selectWithWhere('users', '*');
+$totals = count($totaluser);
+
+// Fetch total time ins
+$totaltimein = $db->selectWithWhere('record', 'time_in');
+$totalt = count($totaltimein);
+
+// Fetch total time outs
+$totaltimeout = $db->selectWithWhere('record', 'time_out');
+$totalto = count($totaltimeout);
 ?>
-<div class="flex justify-center items-center mt-10  ">
-  <div class="flex flex-col gap-7 bg-[#151C39] items-center px-5  py-6 rounded-3xl outline outline-1 outline-slate-500 lg:flex-row lg:gap-32 lg:px-40">
-  <div class="flex gap-5 items-center flex-row lg:flex-col">
-    <h1 class="text-2xl font-bold">Total User</h1>
-    <span class="bg-[#13E8FB] text-black font-bold p-1 rounded-full text-[10px] px-4"><?php echo $totals ?></span>
-  </div>
+<div class="flex justify-center items-center mt-10">
+    <div class="flex flex-col gap-7 bg-[#151C39] items-center px-5 py-6 rounded-3xl outline outline-1 outline-slate-500 lg:flex-row lg:gap-32 lg:px-40">
+        <div class="flex gap-5 items-center flex-row lg:flex-col">
+            <h1 class="text-lg font-bold text-white">Total Users</h1>
+            <span class="bg-[#13E8FB] text-black font-bold p-1 rounded-full text-[10px] px-4"><?php echo $totals; ?></span>
+        </div>
+        
+        <span class="hidden lg:block">
+            <svg width="1" height="50" viewBox="0 0 1 151" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0.5" x2="0.5" y2="151" stroke="white"/>
+            </svg>
+        </span>
 
+        <div class="flex gap-5 items-center flex-row lg:flex-col">
+            <h1 class="text-lg font-bold text-white">Total Time In</h1>
+            <span class="bg-[#13E8FB] text-black font-bold p-1 rounded-full text-[10px] px-4"><?php echo $totalt; ?></span>
+        </div>
 
-  <span class="hidden lg:block"><svg width="1" height="50" viewBox="0 0 1 151" fill="none" xmlns="http://www.w3.org/2000/svg">
-<line x1="0.5" x2="0.5" y2="151" stroke="white"/>
-</svg>
-</span>
+        <span class="hidden lg:block">
+            <svg width="1" height="50" viewBox="0 0 1 151" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0.5" x2="0.5" y2="151" stroke="white"/>
+            </svg>
+        </span>
 
-<?php
-$totaltimein = $db->selectWithWhere('record','time_in');
-$totalt = 0;
-foreach($totaltimein as $total){
-$totalt++;}
-?>
-
-
-<div class="flex gap-5 items-center flex-row lg:flex-col">
-    <h1 class="text-2xl font-bold">Total Time in</h1>
-    <span class="bg-[#13E8FB] text-black font-bold p-1 rounded-full text-[10px] px-4"><?php echo $totalt ?></span>
-  </div>
-
-  <span class="hidden lg:block"><svg width="1" height="50" viewBox="0 0 1 151" fill="none" xmlns="http://www.w3.org/2000/svg">
-<line x1="0.5" x2="0.5" y2="151" stroke="white"/>
-</svg>
-</span>
-
-
-
-<?php
-$totaltimeout = $db->selectWithWhere('record','time_out');
-$totalto = 0;
-foreach($totaltimeout as $totalo){
-$totalto++;}
-?>
-
-<div class="flex gap-5 items-center flex-row lg:flex-col">
-    <h1 class="text-2xl font-bold">Total Time out</h1>
-    <span class="bg-[#13E8FB] text-black font-bold p-1 rounded-full text-[10px] px-4"><?php echo $totalto ?></span>
-  </div>
-  </div>
+        <div class="flex gap-5 items-center flex-row lg:flex-col">
+            <h1 class="text-lg font-bold text-white">Total Time Out</h1>
+            <span class="bg-[#13E8FB] text-black font-bold p-1 rounded-full text-[10px] px-4"><?php echo $totalto; ?></span>
+        </div>
+    </div>
 </div>
 
-
-
-
+<div class="justify-center  flex flex-col items-center lg:flex-row ">
+<img src="../src/qrs.png" alt="" width="500">
+<p class="text-sm text-center lg:text-2xl ">Welcome to the admin dashboard of the University of Science & Technology of Southern Philippines. This interface provides an overview of key metrics and functionalities to manage the attendance system effectively.</p>
+</div>
 <!-- <div class="flex items-center justify-center mt-10">
   <div>
   <div class="radial-progress text-primary" style="--value:70;" role="progressbar">70%</div>

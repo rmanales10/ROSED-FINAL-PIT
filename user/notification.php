@@ -93,23 +93,40 @@ if (!isset($_SESSION['authenticated'])) {
       <!---------------- #NOTIFICATION ---------------------->
       <?php
       include('../db.php');
-      if($db->selectWithWhere('record','time_in','full_name="'.$_SESSION['name'].'"')){
-        $student = $db->selectWithWhere('record','time_in','full_name="'.$_SESSION['name'].'"');
-        foreach($student as $time)
-        echo '<div class="flex justify-center items-center mt-[5vh]">
+      if ($db->selectWithWhere('record', 'time_in', 'full_name="' . $_SESSION['name'] . '"')) {
+        $student = $db->selectWithWhere('record', 'time_in', 'full_name="' . $_SESSION['name'] . '"');
+        foreach ($student as $time)
+          echo '<div class="flex justify-center items-center mt-[5vh]">
         <div class="w-[30vh] lg:w-[50vh]">
         <div role="alert" class="alert alert-success">
           <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <span>Attendance Recorded Successfully <p>Date: '.$time['time_in'].'</p></span>
+          <span>Attendance Recorded Successfully <p>Date: ' . $time['time_in'] . '</p></span>
         </div>
       </div>
       </div>';
-      
       }
-       ?>
-      
+
+      $events = $db->selectWithWhere('events', '*');
+      if ($events) {
+        foreach ($events as $e) {
+            echo '
+            <div class="flex justify-center items-center mt-16">
+                <div class="w-full max-w-lg p-6 bg-gray-800 rounded-lg shadow-lg">
+                    <div role="alert" class="bg-gray-700 border border-gray-600 rounded-lg p-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Notification</h3>
+                        <p class="text-gray-300"><span class="font-semibold text-white">Title:</span> ' . htmlspecialchars($e['title'], ENT_QUOTES, 'UTF-8') . '</p>
+                        <p class="text-gray-300 mt-2"><span class="font-semibold text-white">Purpose:</span> ' . htmlspecialchars($e['purpose'], ENT_QUOTES, 'UTF-8') . '</p>
+                        <p class="text-gray-300 mt-2"><span class="font-semibold text-white">Description:</span> ' . htmlspecialchars($e['description'], ENT_QUOTES, 'UTF-8') . '</p>
+                    </div>
+                </div>
+            </div>';
+        }
+    }
+      ?>
+
+
       <!---------------- #NOTIFICATION ---------------------->
     </div>
   </div>

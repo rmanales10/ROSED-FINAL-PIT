@@ -122,28 +122,11 @@ if (!isset($_SESSION['authenticated'])) {
        </div>
        <div class="flex flex-col mt-10 items-center justify-center text-center gap-10 lg:flex-row">
 
-        <a href="dashboard.php" class="card w-96 h-[192px] bg-base-100 shadow-xl image-full">
-          <figure><img src="../src/eenves.jpg "  /></figure>
-          <div class="card-body">
-            <h2 class="card-title">UPCOMING EVENTS</h2>
-            <p>Upcoming events are scheduled activities or occasions that are set to occur in the near future.</p>
-            <div class="card-actions justify-end">
-            </div>
-          </div>
-        </a>
-        <a href="dashboard.php" class="card w-96 h-[192px] bg-base-100 shadow-xl image-full">
-          <figure><img src="../src/penalty.jpg"  /></figure>
-          <div class="card-body">
-            <h2 class="card-title">PENALTY</h2>
-            <p>Penalty refers to a punitive consequence or disciplinary action imposed as a result of violating rules, regulations, or failing to meet obligations.</p>
-            <div class="card-actions justify-end">
-            </div>
-          </div>
-        </a>
+      
         <!-- #Quick Acces -->
         
                </div>
-               <footer class="footer footer-center p-4 bg-base-300 text-base-content mt-10">
+               <footer class="footer footer-center p-4 bg-base-300 text-base-content mt-40">
                 <aside>
                   <p>Copyright © 2024 - WAla ko kabalo ani</p>
                 </aside>
