@@ -6,3 +6,8 @@
 
 May your hard work and creativity shine! 🌟
 
+Members:
+Rolan Manales
+Seth Ian Encarnada
+Divine Grace Banawa
+
