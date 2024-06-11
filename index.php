@@ -39,13 +39,36 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
         </svg>
         <input type="text" name="idNumberInput" class="grow bg-transparent text-gray-900  text-white placeholder-gray-500 placeholder-gray-400" placeholder="ID Number" maxlength="10" minlength="10" id="idNumberInput" required autocomplete="off"  />
       </label>
-      <label class="input input-bordered flex items-center gap-2 w-full">
+     <label class="input input-bordered flex items-center gap-2 w-full">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70">
-          <path fill-rule="evenodd" d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z" clip-rule="evenodd" />
+            <path fill-rule="evenodd" d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z" clip-rule="evenodd" />
         </svg>
-        <input type="password" name="PasswordInput" class="grow bg-transparent text-gray-900  text-white placeholder-gray-500 placeholder-gray-400" placeholder="●●●●●●●●●●●" required />
-      </label>
-      <a href="#" class="link link-accent">Forgot Password?</a>
+        <input type="password" name="PasswordInput" id="PasswordInput" class="grow bg-transparent text-gray-900 text-white placeholder-gray-500 placeholder-gray-400" placeholder="●●●●●●●●●●●" required />
+    </label>
+    <div class="show-password-container">
+        <input type="checkbox" id="showPassword"> Show Password
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById('PasswordInput');
+        const showPasswordCheckbox = document.getElementById('showPassword');
+
+        showPasswordCheckbox.addEventListener('change', function() {
+            if (showPasswordCheckbox.checked) {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        });
+    </script>
+    
+       <style>
+        .show-password-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
       <div>
       <button type="submit" class="btn btn-active  w-[8rem]">Login</button>
       </form>

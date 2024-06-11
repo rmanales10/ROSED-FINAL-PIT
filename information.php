@@ -19,7 +19,7 @@ if (isset($_POST['fullname']) && isset($_POST['idnumber']) && isset($_POST['sect
         'password' => $password
     ];
     $insertId = $db->insert('users ', $newUserData);
-    echo $_SESSION['success'] = 'Registered Successfully';
+  $_SESSION['success'] = 'Registered Successfully';
     header('location: ./'); 
     exit();
 }
@@ -43,7 +43,7 @@ if (isset($_POST['fullName']) && isset($_POST['section']) && isset($_POST['gende
         'civil_status' => $civilStatus
     ];
     $insertId = $db->insert('student_profile', $student_profile);
-    echo $_SESSION['edit'] = 'Edit Successfully';
+     $_SESSION['edit'] = 'Edit Successfully';
 }
 #-------------------------------------------------Register-----------------------------------------------------#
 

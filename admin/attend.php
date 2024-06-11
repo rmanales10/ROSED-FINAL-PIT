@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if ($result) {
             // Establish database connection
-            $db = new mysqli('localhost', 'root', '', 'attendance');
+            $db = new mysqli(' ', 'root', '', 'attendance');
 
             // Check connection
             if ($db->connect_error) {
