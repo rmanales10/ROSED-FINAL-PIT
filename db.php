@@ -12,7 +12,7 @@ class Database {
         $this->password = $password;
         $this->dbname = $dbname;
         
-        // Create connection
+        // Create connection 
         $this->conn = new mysqli($this->host, $this->username, $this->password, $this->dbname);
 
         // Check connection
