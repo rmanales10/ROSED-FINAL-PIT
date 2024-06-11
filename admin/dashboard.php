@@ -144,7 +144,7 @@ $totalto = count($totaltimeout);
 </div>
 <!-- <div class="flex items-center justify-center mt-10">
   <div>
-  <div class=butd"raddicalrdddandadsdautial-pogokdkres texdkktlage-primary" style="--valudloe:70;" role="progressbar">70%</div>
+  <div class=budsatd"raddicalrdddandadsdautial-pogokdkres texdkktlage-primary" style="--valudloe:70;" role="progressbar">70%</div>
   </div>es
 </div> -->
 
