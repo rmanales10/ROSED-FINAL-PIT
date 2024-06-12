@@ -12,10 +12,10 @@ class Database {
         $this->password = $password;
         $this->dbname = $dbname;
         
-        // Create connection 
+        // Create connections 
         $this->conn = new mysqli($this->host, $this->username, $this->password, $this->dbname);
 
-        // Check connection
+        // Check connections
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         } else {
@@ -89,5 +89,6 @@ $db = new Database('localhost', 'root', '', 'attendance');
 //if($db->selectWithWhere('credentials','*','id_number="1234123" AND psword="password"'))
 
 //$db->closeConnection();
+// Ayaw kalimot double check always tenks. 
 
 ?>
